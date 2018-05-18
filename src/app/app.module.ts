@@ -10,6 +10,7 @@ import {HttpModule} from '@angular/http';
 import {HttpClientModule} from '@angular/common/http';
 import {ContactDetailComponent} from './contact/contact-list/contact-detail/contact-detail.component';
 import {Router, RouterModule, Routes} from '@angular/router';
+import {MaterialComponentsModule} from './contact/ui/material-components/material-components.module';
 
 const appRoutes: Routes = [
   {path: 'contacts', component: ContactListComponent},
@@ -27,7 +28,8 @@ const appRoutes: Routes = [
     BrowserModule,
     FormsModule,
     HttpClientModule,
-    RouterModule.forRoot(appRoutes)
+    RouterModule.forRoot(appRoutes),
+    MaterialComponentsModule
   ],
   providers: [
     ContactService,

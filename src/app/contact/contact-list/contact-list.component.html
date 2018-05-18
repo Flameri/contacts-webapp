@@ -1,8 +1,8 @@
 <div *ngFor="let contact of contacts" (click)="onContactSelect(contact)">
   <p>
-    Nimi: {{contact.firstName}} {{contact.lastName}},
-    Katuosoite: {{contact.streetAddress}}, Kaupunki: {{contact.city}},
-    postinumero: {{contact.postalCode}}, Puhelin: {{contact.phoneNumber}},
-    Email: {{contact.emailAddress}}
+    {{contact.firstName}} {{contact.lastName}},
+    {{contact.streetAddress}}, {{contact.city}},
+    {{contact.postalCode}}, {{contact.phoneNumber}},
+    {{contact.emailAddress}}
   </p>
 </div>

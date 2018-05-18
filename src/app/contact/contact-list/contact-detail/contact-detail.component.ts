@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {ContactService} from '../../services/contact.service';
+import {Contact} from '../../contact';
 
 @Component({
   selector: 'cw-contact-detail',
