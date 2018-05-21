@@ -37,4 +37,8 @@ export class ContactDetailComponent implements OnInit {
   onNavigateBack(): void {
     this.router.navigate(['/contacts']);
   }
+
+  onSave(): void{
+    console.log('TODO: save');
+  }
 }
