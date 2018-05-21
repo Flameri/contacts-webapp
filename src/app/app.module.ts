@@ -11,6 +11,9 @@ import {HttpClientModule} from '@angular/common/http';
 import {ContactDetailComponent} from './contact/contact-list/contact-detail/contact-detail.component';
 import {Router, RouterModule, Routes} from '@angular/router';
 import {MaterialComponentsModule} from './contact/ui/material-components/material-components.module';
+import {FlexLayoutModule} from '@angular/flex-layout';
+import {MatListModule} from '@angular/material';
+import {AvatarModule} from 'ng2-avatar';
 
 const appRoutes: Routes = [
   {path: 'contacts', component: ContactListComponent},
@@ -29,7 +32,9 @@ const appRoutes: Routes = [
     FormsModule,
     HttpClientModule,
     RouterModule.forRoot(appRoutes),
-    MaterialComponentsModule
+    MaterialComponentsModule,
+    FlexLayoutModule,
+    AvatarModule.forRoot()
   ],
   providers: [
     ContactService,
