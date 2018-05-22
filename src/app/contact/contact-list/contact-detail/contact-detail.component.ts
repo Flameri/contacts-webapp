@@ -2,6 +2,9 @@ import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {ContactService} from '../../services/contact.service';
 import {Contact} from '../../contact';
+import {ToolbarService} from '../../ui/toolbar/toolbar.service';
+import {ToolbarAction} from '../../ui/toolbar/toolbar-action';
+import {ToolbarOptions} from '../../ui/toolbar/toolbar-options';
 
 @Component({
   selector: 'cw-contact-detail',
@@ -10,13 +13,22 @@ import {Contact} from '../../contact';
 })
 export class ContactDetailComponent implements OnInit {
 
-  constructor(private router: Router, private route: ActivatedRoute, private contactService: ContactService) {
+  constructor(private router: Router, private route: ActivatedRoute,
+              private contactService: ContactService,
+              private toolbar: ToolbarService) {
     this.contact = new Contact();
   }
 
   contact: Contact;
 
   ngOnInit() {
+    this.toolbar.toolbarOptions.next(
+      new ToolbarOptions(
+        'Contact', [
+          new ToolbarAction(this.onEdit, 'edit')
+        ]));
+
+
     const contactId = this.route.snapshot.paramMap.get('id');
 
     if (contactId == null) {
@@ -38,7 +50,11 @@ export class ContactDetailComponent implements OnInit {
     this.router.navigate(['/contacts']);
   }
 
-  onSave(): void{
+  onSave(): void {
     console.log('TODO: save');
+  }
+
+  onEdit() {
+    console.log('Activate/deactivate edit mode');
   }
 }
