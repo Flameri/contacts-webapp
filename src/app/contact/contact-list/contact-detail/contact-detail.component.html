@@ -1,8 +1,11 @@
 <mat-card class="cw-card-layout">
 
-  <button mat-icon-button (click)="onNavigateBack()">
-    <mat-icon>arrow_back</mat-icon>
-  </button>
+  <mat-card-actions *ngIf="editingEnabled" align="end">
+    <button mat-icon-button (click)="onDelete()">
+      <mat-icon>delete</mat-icon>
+    </button>
+  </mat-card-actions>
+
 
   <div fxLayout="row" fxLayoutAlign="center start">
     <div fxLayout="column" class="cw-contact-detail-fields">
@@ -41,20 +44,20 @@
                placeholder="Street"
                [readonly]="!editingEnabled">
       </mat-form-field>
-        <mat-form-field floatPlaceholder="auto">
-          <input matInput [(ngModel)]="contact.postalCode"
-                 type="text"
-                 required
-                 placeholder="Postal code"
-                 [readonly]="!editingEnabled">
-        </mat-form-field>
-        <mat-form-field floatPlaceholder="auto">
-          <input matInput [(ngModel)]="contact.city"
-                 type="text"
-                 required
-                 placeholder="City"
-                 [readonly]="!editingEnabled">
-        </mat-form-field>
+      <mat-form-field floatPlaceholder="auto">
+        <input matInput [(ngModel)]="contact.postalCode"
+               type="text"
+               required
+               placeholder="Postal code"
+               [readonly]="!editingEnabled">
+      </mat-form-field>
+      <mat-form-field floatPlaceholder="auto">
+        <input matInput [(ngModel)]="contact.city"
+               type="text"
+               required
+               placeholder="City"
+               [readonly]="!editingEnabled">
+      </mat-form-field>
     </div>
   </div>
 </mat-card>
