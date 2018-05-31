@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  apiEndpointUrl: 'http://localhost:64741/api/contacts'
+  apiEndpointUrl: 'https://contactswebapial.azurewebsites.net'
 }
 ;
 
