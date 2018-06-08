@@ -5,7 +5,10 @@ import {Contact} from '../../contact';
 import {ToolbarService} from '../../ui/toolbar/toolbar.service';
 import {ToolbarAction} from '../../ui/toolbar/toolbar-action';
 import {ToolbarOptions} from '../../ui/toolbar/toolbar-options';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {a} from '@angular/core/src/render3';
+import {MatSnackBar} from '@angular/material/';
+import {DialogService} from '../../../dialog/dialog.service';
 
 @Component({
   selector: 'cw-contact-detail',
@@ -16,7 +19,9 @@ export class ContactDetailComponent implements OnInit {
 
   constructor(private router: Router, private route: ActivatedRoute,
               private contactService: ContactService,
-              private toolbar: ToolbarService) {
+              private toolbar: ToolbarService,
+              public snackBar: MatSnackBar,
+              public  dialogService: DialogService) {
     this.contact = new Contact();
     this.editingEnabled = false;
   }
@@ -58,12 +63,14 @@ export class ContactDetailComponent implements OnInit {
       this.contactService.createContact(this.contact).subscribe(response => {
         console.log(response);
         this.router.navigate(['/contacts']);
+        this.onCreateNotification('Contact created!', 'Close');
       });
     } else {
       // Edit contact
       this.editingEnabled = false;
       this.contactService.updateContact(this.contact).subscribe(response => {
         this.contact = response;
+        this.onEditNotification('Contact edited!', 'Close');
       });
     }
   }
@@ -84,7 +91,6 @@ export class ContactDetailComponent implements OnInit {
       toolbarActions = [new ToolbarAction(this.onEdit.bind(this), 'edit')];
     }
     this.toolbar.setToolbarOptions(new ToolbarOptions(true, 'Contact', toolbarActions));
-
   }
 
 
@@ -92,6 +98,26 @@ export class ContactDetailComponent implements OnInit {
     this.editingEnabled = false;
     this.contactService.deleteContact(this.contact).subscribe(() => {
       this.router.navigate(['/contacts']);
+      this.onDeleteNotification('Contact deleted', 'Close');
+    });
+  }
+
+
+  onEditNotification(message: string, action: string) {
+    this.snackBar.open(message, action, {
+      duration: 3000,
+    });
+  }
+
+  onDeleteNotification(message: string, action: string) {
+    this.snackBar.open(message, action, {
+      duration: 3000,
+    });
+  }
+
+  onCreateNotification(message: string, action: string) {
+    this.snackBar.open(message, action, {
+      duration: 3000,
     });
   }
 }

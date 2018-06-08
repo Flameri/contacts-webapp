@@ -2,6 +2,9 @@ import {Injectable} from '@angular/core';
 import {Contact} from '../contact';
 import {ContactHttpService} from './contact-http.service';
 import {Observable} from 'rxjs';
+import {DialogService} from '../../dialog/dialog.service';
+import {map} from 'rxjs/operators';
+import {errorHandler} from '@angular/platform-browser/src/browser';
 
 @Injectable({
   providedIn: 'root'

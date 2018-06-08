@@ -12,22 +12,24 @@ import {ContactDetailComponent} from './contact/contact-list/contact-detail/cont
 import {Router, RouterModule, Routes} from '@angular/router';
 import {MaterialComponentsModule} from './contact/ui/material-components/material-components.module';
 import {FlexLayoutModule} from '@angular/flex-layout';
-import {MatListModule} from '@angular/material';
+import {MatDialogModule, MatListModule, MatSnackBarModule} from '@angular/material';
 import {AvatarModule} from 'ng2-avatar';
-import { TextToColorPipe } from './contact/pipes/text-to-color.pipe';
+import {TextToColorPipe} from './contact/pipes/text-to-color.pipe';
 import {NgPipesModule} from 'ngx-pipes';
-import { ToolbarComponent } from './contact/ui/toolbar/toolbar.component';
+import {ToolbarComponent} from './contact/ui/toolbar/toolbar.component';
 import {ToolbarService} from './contact/ui/toolbar/toolbar.service';
-import { LoginComponent } from './user/login/login.component';
+import {LoginComponent} from './user/login/login.component';
 import {TeardownLogic} from 'rxjs';
 import {AuthenticationService} from './user/services/authentication.service';
 import {TokenService} from './user/services/token.service';
+import {DialogService} from './dialog/dialog.service';
+import {DialogComponent} from './dialog/dialog.component';
 
 const appRoutes: Routes = [
   {path: 'contacts', component: ContactListComponent},
   {path: 'contacts/new', component: ContactDetailComponent},
   {path: 'contacts/:id', component: ContactDetailComponent},
-  {path: 'login', component : LoginComponent},
+  {path: 'login', component: LoginComponent},
   {path: '', redirectTo: '/login', pathMatch: 'full'}
 ];
 
@@ -38,7 +40,8 @@ const appRoutes: Routes = [
     ContactDetailComponent,
     TextToColorPipe,
     ToolbarComponent,
-    LoginComponent
+    LoginComponent,
+    DialogComponent
   ],
   imports: [
     BrowserModule,
@@ -48,16 +51,20 @@ const appRoutes: Routes = [
     MaterialComponentsModule,
     FlexLayoutModule,
     AvatarModule.forRoot(),
-    NgPipesModule
+    NgPipesModule,
+    MatSnackBarModule,
+    MatDialogModule
   ],
   providers: [
     ContactService,
     ContactHttpService,
     ToolbarService,
     AuthenticationService,
-    TokenService
+    TokenService,
+    DialogService
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [DialogComponent]
 })
 export class AppModule {
 }
